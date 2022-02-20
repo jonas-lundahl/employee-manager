@@ -37,14 +37,14 @@ public class EmployeeResource {
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{id}") // We are making an HTTP PUT request
+    @PutMapping("/update") // We are making an HTTP PUT request
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
         Employee updatedEmployee = employeeService.updateEmployee(employee);
         return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}") // We are making an HTTP DELETE request
-    public ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
+    public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id) {
         employeeService.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
