@@ -23,13 +23,15 @@ export class AppComponent implements OnInit {
 
   getEmployees(): void {
     this.employeeService.getEmployees().subscribe(
-      (response: Employee[]) => {
-        this.employees = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+      {
+        next: (response: Employee[]) => {
+          this.employees = response;
+        },
+        error: (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
       }
-    )
+    );
   }
 
   onOpenModal(employee: Employee, mode: string): void {
